@@ -30,7 +30,7 @@ public class WorkWithFile {
         }
         file = new File(toFileName);
         int result = supplyValue - buyValue;
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file, true))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
             writer.write("supply," + supplyValue);
             writer.newLine();
             writer.write("buy," + buyValue);
