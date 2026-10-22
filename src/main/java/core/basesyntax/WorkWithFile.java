@@ -10,7 +10,6 @@ import java.io.IOException;
 public class WorkWithFile {
     public void getStatistic(String fromFileName, String toFileName) {
         File file = new File(fromFileName);
-        StringBuilder builder = new StringBuilder();
         int buyValue = 0;
         int supplyValue = 0;
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
@@ -31,11 +30,8 @@ public class WorkWithFile {
         }
         file = new File(toFileName);
         int result = supplyValue - buyValue;
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file, true))) {
-            writer.write("supply," + supplyValue);
-            writer.write("buy," + buyValue);
-
-            writer.write("result," + result);
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
+            writer.write("supply," + supplyValue + "\nbuy," + buyValue + "\nresult," + result);
         } catch (IOException e) {
             throw new RuntimeException("Can't write to file.", e);
         }
