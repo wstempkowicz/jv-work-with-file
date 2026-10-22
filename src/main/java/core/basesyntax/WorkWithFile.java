@@ -30,8 +30,12 @@ public class WorkWithFile {
         }
         file = new File(toFileName);
         int result = supplyValue - buyValue;
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
-            writer.write("supply," + supplyValue + "\nbuy," + buyValue + "\nresult," + result);
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file, true))) {
+            writer.write("supply," + supplyValue);
+            writer.newLine();
+            writer.write("buy," + buyValue);
+            writer.newLine();
+            writer.write("result," + result);
         } catch (IOException e) {
             throw new RuntimeException("Can't write to file.", e);
         }
